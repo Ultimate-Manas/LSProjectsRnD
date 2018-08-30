@@ -11,15 +11,16 @@ namespace RnDWebApi.Controllers
     public class DataController : ApiController
     {
         [HttpGet]
-        public HttpResponseMessage Download(string fileName)
+        public HttpResponseMessage Download(string filePath)
         {
-            var dataBytes = File.ReadAllBytes(@fileName);
+            var dataBytes = File.ReadAllBytes(filePath);
             var dataStream = new MemoryStream(dataBytes);
-
+            var fileName = Path.GetFileName(filePath);
+            var ext = Path.GetExtension(fileName);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StreamContent(dataStream);
             response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-            response.Content.Headers.ContentDisposition.FileName = "myFile.txt";
+            response.Content.Headers.ContentDisposition.FileName = fileName;
             response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
 
             return response;
