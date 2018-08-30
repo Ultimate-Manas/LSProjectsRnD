@@ -8,9 +8,11 @@ using System.Web.Http;
 
 namespace RnDWebApi.Controllers
 {
+    [RoutePrefix("Data")]
     public class DataController : ApiController
     {
         [HttpGet]
+        [Route("Download")]
         public HttpResponseMessage Download(string filePath)
         {
             var dataBytes = File.ReadAllBytes(filePath);
