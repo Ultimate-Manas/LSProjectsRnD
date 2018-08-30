@@ -17,6 +17,7 @@ namespace RnDWebApi.Controllers
             var dataStream = new MemoryStream(dataBytes);
             var fileName = Path.GetFileName(filePath);
             var ext = Path.GetExtension(fileName);
+            // below code stuff to prepare the response object
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StreamContent(dataStream);
             response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
