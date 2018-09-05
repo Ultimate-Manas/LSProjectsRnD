@@ -19,6 +19,7 @@ namespace RnDCSharp
             chk.ShowStatic();
             chk2.ShowStatic();
             Console.ReadLine();
+            Console.WriteLine("Demo");
 
         }
     }
